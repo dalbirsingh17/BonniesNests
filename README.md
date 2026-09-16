@@ -12,7 +12,7 @@ No frameworks, no build step: open `index.html` in a browser and it works.
 | `reno.html` | Reno property page with booking widget |
 | `css/styles.css` | All styling. Colors and fonts are variables at the top of the file. |
 | `js/main.js` | Mobile menu, photo lightbox, booking-widget placeholder swap |
-| `images/` | Put real photos here (see below) |
+| `images/` | Web-sized photos used by the pages (see below) |
 
 ## Preview it locally
 
@@ -40,13 +40,22 @@ Then open http://localhost:8080.
 
 Other OwnerRez widgets (availability calendar, reviews, property search) use the same `<div class="ownerrez-widget">` pattern and can be dropped anywhere on a page.
 
-## 2. Swap the placeholder photos
+## 2. Photos
 
-All photos currently point at `https://picsum.photos/...` (random stock photos). To use real ones:
+Real photos live in `images/`, already resized for the web (about 1000px wide for gallery tiles and cards,
+1600px for the click-to-enlarge version, 1800px for the full-width hero banners; all under ~500 KB).
 
-1. Save photos into the `images/` folder, e.g. `images/pv-living-room.jpg`. Aim for 1600px wide or larger, under ~500 KB each.
-2. In the HTML, replace the `src` (and for gallery photos, the `href`) with the new path, e.g. `images/pv-living-room.jpg`.
+Each gallery photo has two files: `images/pv-kitchen.jpg` (the tile) and `images/pv-kitchen-lg.jpg` (the enlarged
+version shown when you click it). The gallery grid grows on its own, so add as many `<a href="...-lg.jpg"><img src="..." alt="..."></a>`
+lines as you like; the first one is always the big tile.
+
+To add or swap a photo:
+
+1. Export it at about 1600px wide, JPEG quality ~80, and save it into `images/` with a descriptive name.
+2. In the HTML, point the `src` (and for gallery photos, the `href`) at the new file.
 3. Update the `alt` text so it describes the photo.
+
+The original full-resolution photos are not part of the site and should stay out of the repo.
 
 ## 3. Edit the property details
 
